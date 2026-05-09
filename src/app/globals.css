@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0B0F19;
+  --color-foreground: #F8FAFC;
+  
+  --color-surface: #111827;
+  --color-surface-hover: #1F2937;
+  
+  --color-electric-blue: #00F0FF;
+  --color-slate-muted: #94A3B8;
+
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-bg: rgba(17, 24, 39, 0.7);
+}
+
+@layer base {
+  :root {
+    --background: #0B0F19;
+    --foreground: #F8FAFC;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glassmorphism {
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-glass-border);
+  }
+  
+  .glow-border {
+    position: relative;
+  }
+  
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(to bottom right, var(--color-electric-blue), transparent);
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  
+  .glow-border:hover::before {
+    opacity: 1;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  }
+
+  .box-glow {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+  }
+  
+  .box-glow-hover:hover {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+  }
+}
